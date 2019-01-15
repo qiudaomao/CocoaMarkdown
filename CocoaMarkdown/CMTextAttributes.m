@@ -14,7 +14,10 @@ static NSDictionary * CMDefaultTextAttributes()
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]};
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:12.0]};
+    return @{
+             NSFontAttributeName: [NSFont userFontOfSize:13.5],
+             NSForegroundColorAttributeName: NSColor.labelColor,
+             };
 #endif
 }
 
@@ -78,7 +81,7 @@ static NSDictionary * CMDefaultLinkAttributes()
 #if TARGET_OS_IPHONE
         NSForegroundColorAttributeName: UIColor.blueColor,
 #else
-        NSForegroundColorAttributeName: NSColor.blueColor,
+        NSForegroundColorAttributeName: NSColor.systemBlueColor,
 #endif
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
     };
