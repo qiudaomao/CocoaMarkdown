@@ -14,6 +14,7 @@
 #import "CMHTMLElement.h"
 #import "CMHTMLUtilities.h"
 #import "CMTextAttributes.h"
+#import "CMImageCache.h"
 #import "CMNode.h"
 #import "CMParser.h"
 
@@ -30,6 +31,11 @@
     NSMutableDictionary *_tagNameToTransformerMapping;
     NSMutableAttributedString *_buffer;
     NSAttributedString *_attributedString;
+    NSMutableArray *_pendingImageURLs;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
@@ -38,6 +44,13 @@
         _document = document;
         _attributes = attributes;
         _tagNameToTransformerMapping = [[NSMutableDictionary alloc] init];
+        _pendingImageURLs = [[NSMutableArray alloc] init];
+        _maxImageSize = CGSizeMake(100, 100);
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(imageDidLoad:)
+                                                     name:CMImageCacheImageDidLoadNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -98,6 +111,26 @@
 {
     [self appendString:@"\n"];
     [_attributeStack pop];
+}
+
+- (void)parser:(CMParser *)parser didStartImageWithURL:(NSURL *)URL title:(NSString *)title {
+#if TARGET_OS_IPHONE
+    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+    CMImage *image = [[CMImageCache sharedInstance] imageForURL:URL];
+    if ( ! image) {
+        CGSize landscapePlaceholderSize = [CMImageCache size:CGSizeMake(3, 2) thatAspectFits:_maxImageSize];
+        image = [CMImageCache placeholderImageWithSize:landscapePlaceholderSize];
+        [_pendingImageURLs addObject:URL];
+        [[CMImageCache sharedInstance] loadImageFromURL:URL];
+    }
+
+    textAttachment.image = image;
+    CGSize size = [CMImageCache size:image.size thatAspectFits:_maxImageSize];
+    textAttachment.bounds = CGRectMake(0, 0, size.width, size.height);
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
+
+    [_buffer appendAttributedString:attrStringWithImage];
+#endif
 }
 
 - (void)parserDidStartParagraph:(CMParser *)parser
@@ -367,6 +400,16 @@
         } else {
             [parentElement.buffer appendString:attrString.string];
         }
+    }
+}
+
+#pragma mark - Notifications
+
+- (void)imageDidLoad:(NSNotification *)notification {
+    NSURL *url = notification.userInfo[@"url"];
+    NSUInteger index = [_pendingImageURLs indexOfObject:url];
+    if (index != NSNotFound) {
+        [self.delegate rendererContentDidInvalidate:self];
     }
 }
 

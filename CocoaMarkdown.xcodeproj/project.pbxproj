@@ -173,6 +173,9 @@
 		72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFA1A68695100F23F46 /* Images.xcassets */; };
 		72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFC1A68695100F23F46 /* MainMenu.xib */; };
 		72FE7F191A686ACD00F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
+		E9A6BF1621EDA7AC005C0183 /* CMImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = E9A6BF0521EDA7AC005C0183 /* CMImageCache.h */; };
+		E9A6BF1721EDA7AC005C0183 /* CMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6BF1521EDA7AC005C0183 /* CMImageCache.m */; };
+		E9A6BF1821EDA81E005C0183 /* CMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6BF1521EDA7AC005C0183 /* CMImageCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -437,6 +440,8 @@
 		E958B3132181BD5600FE1730 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E958B32D2181BD5600FE1730 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E958B32E2181BD5600FE1730 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
+		E9A6BF0521EDA7AC005C0183 /* CMImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMImageCache.h; sourceTree = "<group>"; };
+		E9A6BF1521EDA7AC005C0183 /* CMImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMImageCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -539,6 +544,8 @@
 				722E33E51A68E86B004DE919 /* CMTextAttributes.m */,
 				72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */,
 				72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */,
+				E9A6BF0521EDA7AC005C0183 /* CMImageCache.h */,
+				E9A6BF1521EDA7AC005C0183 /* CMImageCache.m */,
 			);
 			name = "Attributed Strings";
 			sourceTree = "<group>";
@@ -798,6 +805,7 @@
 				06D9F8771A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */,
 				722E33E61A68E86B004DE919 /* CMTextAttributes.h in Headers */,
 				72C17A991A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
+				E9A6BF1621EDA7AC005C0183 /* CMImageCache.h in Headers */,
 				729F54301A6864F400CC7448 /* CMNode.h in Headers */,
 				72772BE61A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
 				725115E01A6970A300337419 /* CMStack.h in Headers */,
@@ -1230,6 +1238,7 @@
 				72C17A951A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
 				725A5FF71AEC5F9F00D6342C /* houdini_html_e.c in Sources */,
 				729F54241A6864F400CC7448 /* CMAttributedStringRenderer.m in Sources */,
+				E9A6BF1721EDA7AC005C0183 /* CMImageCache.m in Sources */,
 				722E33E81A68E86B004DE919 /* CMTextAttributes.m in Sources */,
 				725A600B1AEC5F9F00D6342C /* xml.c in Sources */,
 				72C17A9B1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
@@ -1288,6 +1297,7 @@
 				72C17A961A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
 				725A5FF81AEC5F9F00D6342C /* houdini_html_e.c in Sources */,
 				729F54251A6864F400CC7448 /* CMAttributedStringRenderer.m in Sources */,
+				E9A6BF1821EDA81E005C0183 /* CMImageCache.m in Sources */,
 				722E33E91A68E86B004DE919 /* CMTextAttributes.m in Sources */,
 				725A600C1AEC5F9F00D6342C /* xml.c in Sources */,
 				72C17A9C1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,

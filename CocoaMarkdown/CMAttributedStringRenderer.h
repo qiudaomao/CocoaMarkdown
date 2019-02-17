@@ -7,6 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+
+@class CMAttributedStringRenderer;
+@protocol CMAttributedStringRendererDelegate <NSObject>
+// will trigger whenever new images are downloaded
+- (void)rendererContentDidInvalidate:(CMAttributedStringRenderer *)render;
+@end
+
 
 @class CMDocument;
 @class CMTextAttributes;
@@ -43,5 +51,6 @@
  *  styled using the attributes set on the receiver.
  */
 - (NSAttributedString *)render;
-
+@property (nonatomic, weak) id <CMAttributedStringRendererDelegate> delegate;
+@property (nonatomic, assign) CGSize maxImageSize;
 @end
